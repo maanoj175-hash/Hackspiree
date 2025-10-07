@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GramVidya</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark edu-navbar sticky-top">
+      <div class="container">
+        <!-- Left: Brand with logo -->
+        <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+          <i class="bi bi-mortarboard-fill brand-icon" aria-hidden="true"></i>
+          <span class="fw-bold">GramVidya</span>
+        </a>
+
+        <!-- Mobile toggler -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Center: Nav links -->
+          <ul class="navbar-nav mx-lg-auto my-2 my-lg-0 gap-lg-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#mission">Our Mission</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact Us</a>
+            </li>
+          </ul>
+
+          <!-- Right: Login button -->
+          <div class="d-flex ms-lg-auto">
+            <a class="btn btn-login" href="#login">Login</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <!-- Hero Section -->
+      <section
+        class="hero d-flex align-items-center justify-content-center text-center text-white"
+      >
+        <div
+          class="hero-bg"
+          role="img"
+          aria-label="Children learning with a tablet"
+        ></div>
+        <div class="container position-relative">
+          <h1 class="display-5 display-md-4 fw-bold mb-3">
+            <span class="highlight">Empowering Rural Education</span> Through
+            Digital Learning
+          </h1>
+          <p class="lead mx-auto mb-4 hero-subtitle">
+            Bringing quality education to every student, regardless of location
+            or connectivity. Learn, grow, and succeed with EduConnect.
+          </p>
+        </div>
+      </section>
+    </main>
+    <!-- About Us Section -->
+    <section id="about" class="py-5 about-section">
+      <div class="container container-narrow text-center">
+        <h2 class="fw-bold mb-3">About Us</h2>
+        <p class="text-muted mb-3">
+          Gramvidya is dedicated to bridging the education gap in rural
+          communities. We design offline-first, device-friendly learning
+          experiences so students can access quality content anywhere.
+        </p>
+        <p class="text-muted mb-4">
+          Our mission is to empower learners and teachers with simple, effective
+          tools that work reliably, even with limited connectivity.
+        </p>
+        <div
+          class="pill-group d-flex flex-wrap justify-content-center gap-2 mb-4"
+        >
+          <span class="pill"
+            ><i class="bi bi-wifi-off me-1"></i>Offline-first</span
+          >
+          <span class="pill"
+            ><i class="bi bi-phone me-1"></i>Device-friendly</span
+          >
+          <span class="pill"
+            ><i class="bi bi-people me-1"></i>Community Impact</span
+          >
+        </div>
+        <div class="about-card p-4 rounded-4 shadow-sm bg-white mx-auto mb-4">
+          <div
+            class="d-flex align-items-center justify-content-center gap-3 mb-2"
+          >
+            <i class="bi bi-mortarboard-fill brand-icon" aria-hidden="true"></i>
+            <h5 class="mb-0 fw-semibold">What Drives Us</h5>
+          </div>
+          <p class="mb-0 text-muted">
+            Access, simplicity, and impact. We focus on solutions that are easy
+            to use and meaningful for underserved schools.
+          </p>
+        </div>
+        <a href="#mission" class="btn btn-primary">Explore Our Mission</a>
+      </div>
+    </section>
+    <!-- Our Mission Section -->
+    <section id="mission" class="py-5 bg-light">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold">Why Choose GramVidya?</h2>
+          <p class="text-muted mb-0">
+            Designed specifically for rural schools with limited resources and
+            connectivity
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card h-100 p-4 bg-white rounded-4 shadow-sm">
+              <div class="icon-wrap mb-3">
+                <i class="bi bi-lightning-charge-fill"></i>
+              </div>
+              <h5 class="fw-semibold mb-2">Works Offline</h5>
+              <p class="text-muted mb-0">
+                Access lessons and materials even without internet connectivity
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card h-100 p-4 bg-white rounded-4 shadow-sm">
+              <div class="icon-wrap mb-3">
+                <i class="bi bi-check2-circle"></i>
+              </div>
+              <h5 class="fw-semibold mb-2">Simple UI</h5>
+              <p class="text-muted mb-0">
+                Simple and intuitive user interface for easy navigation by
+                students and teachers
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card h-100 p-4 bg-white rounded-4 shadow-sm">
+              <div class="icon-wrap mb-3"><i class="bi bi-book"></i></div>
+              <h5 class="fw-semibold mb-2">Interactive Learning</h5>
+              <p class="text-muted mb-0">
+                Engaging multimedia content that makes learning fun and
+                effective
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card h-100 p-4 bg-white rounded-4 shadow-sm">
+              <div class="icon-wrap mb-3"><i class="bi bi-people"></i></div>
+              <h5 class="fw-semibold mb-2">Teacher Support</h5>
+              <p class="text-muted mb-0">
+                Dashboards to track student progress and performance
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card h-100 p-4 bg-white rounded-4 shadow-sm">
+              <div class="icon-wrap mb-3"><i class="bi bi-award"></i></div>
+              <h5 class="fw-semibold mb-2">Skill Development</h5>
+              <p class="text-muted mb-0">
+                Build digital literacy and essential skills for the future
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card h-100 p-4 bg-white rounded-4 shadow-sm">
+              <div class="icon-wrap mb-3"><i class="bi bi-heart"></i></div>
+              <h5 class="fw-semibold mb-2">Low-End Friendly</h5>
+              <p class="text-muted mb-0">
+                Optimized to work on older devices and low specifications
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact" class="py-5 contact-section">
+      <div class="container">
+        <div class="text-center mb-4">
+          <h2 class="fw-bold">Contact Us</h2>
+          <p class="text-muted mb-0">We'd love to hear from you</p>
+        </div>
+
+        <div class="row g-4 align-items-stretch">
+          <div class="col-lg-6">
+            <div class="p-4 rounded-4 bg-white shadow-sm h-100">
+              <h5 class="fw-semibold mb-3">Reach GramVidya</h5>
+              <ul class="list-unstyled mb-0">
+                <li class="mb-2">
+                  <i class="bi bi-geo-alt me-2"></i> 221 Rural Learning Ave,
+                  Block B, Satpura, India
+                </li>
+                <li class="mb-2">
+                  <i class="bi bi-envelope me-2"></i> hello@gramvidya.org
+                </li>
+                <li class="mb-2">
+                  <i class="bi bi-telephone me-2"></i> +91 98765 43210
+                </li>
+                <li class="mb-0">
+                  <i class="bi bi-clock me-2"></i> Mon–Fri, 9:00 AM – 6:00 PM
+                  IST
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <form class="p-4 rounded-4 bg-white shadow-sm h-100">
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <label class="form-label">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Your name"
+                  />
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="you@example.com"
+                  />
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Message</label>
+                  <textarea
+                    class="form-control"
+                    rows="4"
+                    placeholder="How can we help?"
+                  ></textarea>
+                </div>
+                <div class="col-12 d-grid">
+                  <button type="button" class="btn btn-primary">
+                    Send Message
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer text-white mt-auto">
+      <div class="container py-5">
+        <div class="row g-4 align-items-start">
+          <div class="col-md-5">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <i
+                class="bi bi-mortarboard-fill brand-icon"
+                aria-hidden="true"
+              ></i>
+              <span class="fs-5 fw-bold">GramVidya</span>
+            </div>
+            <p class="mb-2 text-white-50">
+              Empowering rural education with simple, reliable digital learning.
+            </p>
+            <div class="d-flex gap-3 fs-5">
+              <a class="text-white-50 footer-link" href="#" aria-label="Twitter"
+                ><i class="bi bi-twitter-x"></i
+              ></a>
+              <a
+                class="text-white-50 footer-link"
+                href="#"
+                aria-label="Facebook"
+                ><i class="bi bi-facebook"></i
+              ></a>
+              <a
+                class="text-white-50 footer-link"
+                href="#"
+                aria-label="Instagram"
+                ><i class="bi bi-instagram"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <h6 class="text-uppercase fw-semibold mb-3">Explore</h6>
+            <ul class="list-unstyled mb-0">
+              <li><a class="footer-link" href="#about">About Us</a></li>
+              <li><a class="footer-link" href="#mission">Our Mission</a></li>
+              <li><a class="footer-link" href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h6 class="text-uppercase fw-semibold mb-3">Contact</h6>
+            <ul class="list-unstyled mb-0 text-white-50">
+              <li class="mb-1">
+                <i class="bi bi-envelope me-2"></i> hello@gramvidya.org
+              </li>
+              <li class="mb-1">
+                <i class="bi bi-telephone me-2"></i> +91 9304644401
+              </li>
+              <li><i class="bi bi-geo-alt me-2"></i> Jharkhand, India</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="border-light border-opacity-25 my-4" />
+        <div
+          class="d-flex flex-column flex-sm-row justify-content-between align-items-center small text-white-50"
+        >
+          <span>© <span id="year"></span> GramVidya. All rights reserved.</span>
+          <div class="d-flex gap-3 mt-2 mt-sm-0">
+            <a class="footer-link" href="#">Privacy</a>
+            <a class="footer-link" href="#">Terms</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+      <i class="bi bi-arrow-up"></i>
+    </button>
+    <script src="script.js"></script>
+  </body>
+</html>
