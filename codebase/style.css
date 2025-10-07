@@ -221,6 +221,17 @@ html {
   box-shadow: 0 0 0 0.2rem rgba(11, 61, 145, 0.15);
 }
 
+/* Login modal role toggle */
+.role-toggle .btn {
+  min-width: 96px;
+}
+.role-toggle .btn.active,
+.role-toggle .btn:active {
+  background: linear-gradient(90deg, var(--edu-navy), #0a5db1);
+  color: #fff;
+  border-color: transparent;
+}
+
 /* Footer */
 .site-footer {
   background: linear-gradient(180deg, #0a5db1, var(--edu-navy));
@@ -232,4 +243,81 @@ html {
 .site-footer .footer-link:hover {
   color: #ffffff;
   text-decoration: underline;
+}
+
+/* Dashboard tweaks */
+.card-title {
+  color: #0f172a;
+}
+.bg-edu-emerald {
+  background: linear-gradient(90deg, var(--edu-emerald), #18a06a) !important;
+}
+.display-6 {
+  font-size: 1.6rem;
+}
+.list-group-item .small {
+  opacity: 0.8;
+}
+/* Resource card styles */
+.resource-card .card-title {
+  font-size: 1rem;
+}
+.resource-card .card-text {
+  min-height: 48px;
+}
+.resource-card .btn {
+  flex: 1 1 auto;
+}
+
+/* Easy mode: larger readable UI for low-literacy users */
+.easy-mode body {
+  font-size: 1.15rem;
+}
+.easy-mode .card {
+  border-radius: 12px;
+}
+.easy-mode .resource-card .card-title {
+  font-size: 1.15rem;
+}
+.easy-mode .btn {
+  padding: 0.7rem 0.9rem;
+  font-size: 1rem;
+}
+.easy-mode .list-group-item {
+  font-size: 1.05rem;
+}
+
+/* Slight highlight for resources container */
+#resourcesSection {
+  background: linear-gradient(180deg, #fbfdff, #f8fbff);
+}
+
+/* Resource library specific */
+#resourceGrid .card,
+#resourceGrid .resource-card {
+  min-height: 140px;
+}
+.resource-card .card-title {
+  font-size: 1.05rem;
+}
+.resource-card .card-text {
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .resource-card .card-text {
+    font-size: 1rem;
+  }
+}
+
+/* Make charts responsive and rounded */
+canvas {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+@media (max-width: 992px) {
+  .display-6 {
+    font-size: 1.25rem;
+  }
 }
