@@ -6,7 +6,7 @@ export default function App() {
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-xxl">
+        <div className="container-xl">
           <Link className="navbar-brand fw-semibold" to="/">GramVidya</Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nv" aria-controls="nv" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
@@ -35,4 +35,5 @@ export default function App() {
     </div>
   );
 }
+
 
