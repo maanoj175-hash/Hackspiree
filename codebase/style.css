@@ -14,7 +14,16 @@ body {
 
 /* Navbar styling */
 .edu-navbar {
-  background: linear-gradient(90deg, var(--edu-navy), #0a5db1);
+  /* stronger translucency so it's visibly transparent over page content */
+  background: linear-gradient(
+    90deg,
+    rgba(11, 61, 145, 0.62),
+    rgba(10, 93, 177, 0.58)
+  );
+  background-color: rgba(11, 61, 145, 0.55) !important;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 .sticky-top.edu-navbar {
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.08);
@@ -80,8 +89,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6rem 0;
-  overflow: hidden;
+  height: 56px;
+  background: linear-gradient(
+    90deg,
+    var(--accent-start, #0b3d91),
+    var(--accent-end, #0a9bff)
+  );
+  color: #fff;
 }
 .hero .hero-bg {
   position: absolute;
@@ -320,4 +334,223 @@ canvas {
   .display-6 {
     font-size: 1.25rem;
   }
+}
+
+/* Unique styles for Government Schemes and Events nav buttons */
+.nav-unique-scheme {
+  background: linear-gradient(90deg, #ff8a00, #ffcd3c);
+  color: #08203b !important;
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  font-weight: 700;
+  box-shadow: 0 4px 8px rgba(255, 140, 0, 0.12);
+}
+.nav-unique-scheme:hover,
+.nav-unique-scheme:focus {
+  transform: translateY(-2px);
+  text-decoration: none;
+  color: #041826 !important;
+}
+.nav-unique-event {
+  background: linear-gradient(90deg, #1e7f5a, #46b987);
+  color: #ffffff !important;
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  font-weight: 700;
+  box-shadow: 0 4px 8px rgba(30, 127, 90, 0.12);
+}
+.nav-unique-event:hover,
+.nav-unique-event:focus {
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+/* Ensure small-screen nav items still have readable spacing */
+@media (max-width: 767px) {
+  .nav-unique-scheme,
+  .nav-unique-event {
+    display: inline-block;
+    margin-top: 0.35rem;
+  }
+}
+
+/* Schemes page: dynamic card accents */
+.scheme-card {
+  overflow: hidden;
+  border-radius: 12px;
+  /* unified base card color for all schemes */
+  background: linear-gradient(180deg, #ffffff, #f8fbff);
+  border: 1px solid rgba(11, 61, 145, 0.06);
+  box-shadow: 0 6px 18px rgba(11, 61, 145, 0.04);
+}
+.scheme-card .scheme-top {
+  height: 56px;
+  background: linear-gradient(
+    90deg,
+    var(--accent-start, #0b3d91),
+    var(--accent-end, #0a9bff)
+  );
+  color: #fff;
+}
+.scheme-card .card-body {
+  padding: 1rem 1rem 1.25rem 1rem;
+  background: transparent; /* keep same visual base provided by .scheme-card */
+}
+.scheme-card .card-title {
+  font-size: 1.05rem;
+}
+.btn-apply {
+  background: linear-gradient(
+    90deg,
+    var(--accent-start, #ff8a00),
+    var(--accent-end, #ffcd3c)
+  );
+  color: #08121a;
+  border: none;
+  font-weight: 700;
+}
+.btn-apply:hover,
+.btn-apply:focus {
+  filter: brightness(0.95);
+}
+.spinner-sm {
+  width: 1rem;
+  height: 1rem;
+  border-width: 0.12em;
+}
+
+/* Enhanced scheme card visuals */
+.scheme-icon {
+  font-size: 1.2rem;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.08),
+    rgba(255, 255, 255, 0.02)
+  );
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+.scheme-badge {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  padding: 0.18rem 0.6rem;
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  transform-origin: center;
+  transition: transform 220ms ease, opacity 220ms ease;
+}
+.uptake-bar {
+  background: rgba(15, 23, 42, 0.06);
+  border-radius: 999px;
+  height: 18px;
+  overflow: hidden;
+  min-width: 120px;
+}
+.uptake-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0.5rem;
+  color: #042028;
+  font-weight: 800;
+  background: linear-gradient(
+    90deg,
+    var(--accent-start, #ff8a00),
+    var(--accent-end, #ffcd3c)
+  );
+  transition: width 900ms cubic-bezier(0.2, 0.8, 0.2, 1), background 220ms ease;
+}
+
+/* Ensure collapsed nav and container show the same translucent background */
+.edu-navbar .navbar-collapse,
+.edu-navbar .container {
+  background: transparent !important;
+}
+
+/* Slightly stronger on small screens for legibility */
+@media (max-width: 767px) {
+  .edu-navbar {
+    background-color: rgba(11, 61, 145, 0.68) !important;
+  }
+}
+.scheme-details {
+  display: none;
+}
+.scheme-details.show {
+  display: block;
+}
+
+/* Theme-friendly success button */
+.btn-success {
+  background: linear-gradient(90deg, var(--edu-emerald), #3ac18a) !important;
+  border: none !important;
+  color: #05231a !important;
+  font-weight: 700;
+}
+
+/* Redirecting toast */
+.redirect-toast {
+  position: fixed;
+  right: 1rem;
+  bottom: 1.25rem;
+  background: rgba(8, 22, 26, 0.92);
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 1100;
+  transform: translateY(8px);
+  transition: transform 220ms ease, opacity 220ms ease;
+  opacity: 0;
+}
+.redirect-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+.toast-content {
+  display: flex;
+  align-items: center;
+}
+.spinner-sm {
+  width: 1rem;
+  height: 1rem;
+  border-width: 0.12em;
+}
+/* Profile area styles used on events/student pages */
+.profile-avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(11, 61, 145, 0.12);
+}
+.profile-wrap {
+  position: relative;
+}
+.profile-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  min-width: 180px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 0.25rem 0;
+  z-index: 1200;
+}
+.profile-item {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #0f172a;
+  text-decoration: none;
+}
+.profile-item:hover {
+  background: #f4f6fb;
 }
