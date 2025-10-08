@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Teacher - GramVidya</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark edu-navbar sticky-top">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+          <i class="bi bi-mortarboard-fill brand-icon" aria-hidden="true"></i>
+          <span class="fw-bold">GramVidya</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navTeacher"
+          aria-controls="navTeacher"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navTeacher">
+          <ul class="navbar-nav mx-lg-auto my-2 my-lg-0 gap-lg-3">
+            <li class="nav-item">
+              <a class="nav-link" href="#performance"
+                >Dashboard (Student Performance)</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#students">Student List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#links">Links Posting</a>
+            </li>
+            <li class="nav-item">
+              <a
+                id="navSchemesBtn"
+                class="nav-link nav-unique-scheme"
+                href="schemes.html"
+                aria-label="Government Schemes"
+                >Government Schemes</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                id="navEventsBtn"
+                class="nav-link nav-unique-event"
+                href="events.html"
+                aria-label="Government Events"
+                >Government Events</a
+              >
+            </li>
+          </ul>
+          <div class="d-flex ms-lg-auto">
+            <a id="logoutBtn" class="btn btn-light" href="#">Logout</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container py-5">
+      <h1 id="performance">Teacher Dashboard</h1>
+      <p id="welcome" class="lead"></p>
+
+      <section id="students" class="mt-4">
+        <h3>Student List</h3>
+        <ul class="list-group" id="studentList">
+          <li class="list-group-item">Raju</li>
+          <li class="list-group-item">Seema</li>
+          <li class="list-group-item">Amit</li>
+        </ul>
+      </section>
+
+      <section id="links" class="mt-4">
+        <h3>Post a Link (this will appear in students' Links)</h3>
+        <form id="postLinkForm" class="row g-2">
+          <div class="col-9">
+            <input
+              id="postLinkInput"
+              class="form-control"
+              placeholder="https://example.com/resource"
+            />
+          </div>
+          <div class="col-3 d-grid">
+            <button class="btn btn-primary" type="submit">Post Link</button>
+          </div>
+        </form>
+
+        <h4 class="mt-3">Posted Links</h4>
+        <div id="postedLinks" class="list-group"></div>
+      </section>
+
+      <section id="quizAuthor" class="mt-4">
+        <h3>Author Quizzes</h3>
+        <p class="small text-muted">Create simple quizzes for students. These appear alongside built-in quizzes.</p>
+        <div class="d-flex gap-2 mb-2">
+          <button id="openCreateQuiz" class="btn btn-apply btn-sm">Create Quiz</button>
+          <button id="exportQuizzes" class="btn btn-outline-secondary btn-sm">Export Quizzes</button>
+          <button id="importQuizzes" class="btn btn-outline-secondary btn-sm">Import Quizzes</button>
+        </div>
+        <div id="teacherQuizzes" class="list-group"></div>
+      </section>
+
+      <section id="resourcesAuthor" class="mt-4">
+        <h3>Post Resources</h3>
+        <form id="postResourceForm" class="row g-2">
+          <div class="col-md-4">
+            <input id="resTitle" class="form-control" placeholder="Title" />
+          </div>
+          <div class="col-md-4">
+            <input id="resUrl" class="form-control" placeholder="URL or file path" />
+          </div>
+          <div class="col-md-3">
+            <input id="resDesc" class="form-control" placeholder="Short description" />
+          </div>
+          <div class="col-md-1 d-grid">
+            <button class="btn btn-success" type="submit">Add</button>
+          </div>
+        </form>
+      </section>
+      <section id="submissions" class="mt-4">
+        <h3>Recent Quiz Submissions</h3>
+        <div id="submissionsList" class="list-group"></div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="teacher.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/sw.js").catch(function (e) {
+          console.warn("SW registration failed", e);
+        });
+      }
+    </script>
+  </body>
+</html>

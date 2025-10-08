@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Government Events - GramVidya</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark edu-navbar sticky-top">
+      <div class="container">
+        <a
+          class="navbar-brand d-flex align-items-center gap-2"
+          href="index.html"
+        >
+          <i class="bi bi-mortarboard-fill brand-icon" aria-hidden="true"></i>
+          <span class="fw-bold">GramVidya</span>
+        </a>
+        <div class="d-flex ms-lg-auto gap-2 align-items-center">
+          <a id="homeBtn" class="btn btn-light btn-sm" href="index.html"
+            ><i class="bi bi-house-door-fill me-1"></i>Home</a
+          >
+
+          <!-- notification bell -->
+          <button
+            id="notifBtn"
+            class="btn btn-outline-light btn-sm position-relative"
+            title="Notifications"
+          >
+            <i class="bi bi-bell"></i>
+            <span
+              id="notifBadge"
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+              style="font-size: 0.6rem"
+              >3</span
+            >
+          </button>
+
+          <!-- profile dropdown (custom) -->
+          <div class="profile-wrap dropdown">
+            <button
+              id="profileBtn"
+              class="btn btn-sm btn-light d-flex align-items-center gap-2"
+              aria-expanded="false"
+            >
+              <img
+                src="assets/avatar.png"
+                alt="Profile"
+                class="profile-avatar"
+                width="32"
+                height="32"
+              />
+              <span class="d-none d-sm-inline fw-semibold">My Profile</span>
+              <i class="bi bi-caret-down-fill ms-1"></i>
+            </button>
+            <div
+              id="profileMenu"
+              class="profile-menu shadow-sm"
+              role="menu"
+              hidden
+            >
+              <a class="profile-item" href="profile.html">View Profile</a>
+              <a class="profile-item" href="myapps.html">My Applications</a>
+              <a class="profile-item" href="help.html">Help & Support</a>
+              <div class="dropdown-divider"></div>
+              <a id="logoutLink" class="profile-item text-danger" href="#"
+                >Logout</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container py-5">
+      <h1 class="h2 mb-2">Events & Workshops for Students</h1>
+      <p class="text-muted">
+        A mix of government outreach and private partner events useful to
+        village students.
+      </p>
+
+      <div id="eventsList" class="row g-3 mt-3"></div>
+    </main>
+
+    <!-- Redirect toast (reused style) -->
+    <div
+      id="eventToast"
+      role="status"
+      aria-live="polite"
+      class="redirect-toast"
+      hidden
+    >
+      <div class="toast-content">
+        <div
+          class="spinner-border text-light spinner-sm"
+          role="status"
+          aria-hidden="true"
+          style="width: 1rem; height: 1rem"
+        ></div>
+        <div id="eventToastText" class="ms-2">Processing...</div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var events = [
+          {
+            id: "e1",
+            title: "Village Health & Vision Camp",
+            date: "2025-10-20",
+            venue: "Community Hall",
+            rsvp: true,
+            source: "Gov",
+          },
+          {
+            id: "e2",
+            title: "Storytelling & Reading Day",
+            date: "2025-11-05",
+            venue: "School Ground",
+            rsvp: false,
+            source: "Gov",
+          },
+          {
+            id: "e3",
+            title: "Digital Skills Workshop (Basic)",
+            date: "2025-12-01",
+            venue: "Library",
+            rsvp: true,
+            source: "Private",
+          },
+          {
+            id: "e4",
+            title: "Career Guidance Fair",
+            date: "2025-11-22",
+            venue: "Block Office",
+            rsvp: true,
+            source: "Gov",
+          },
+          {
+            id: "e5",
+            title: "Science Demonstration Day",
+            date: "2025-10-30",
+            venue: "School Lab",
+            rsvp: false,
+            source: "Private",
+          },
+          {
+            id: "e6",
+            title: "Sports & Games Meet",
+            date: "2025-12-10",
+            venue: "Playground",
+            rsvp: true,
+            source: "Gov",
+          },
+          {
+            id: "e7",
+            title: "Teacher-Parent Workshop",
+            date: "2025-11-11",
+            venue: "Community Center",
+            rsvp: false,
+            source: "Gov",
+          },
+          {
+            id: "e8",
+            title: "Scholarship Awareness Session",
+            date: "2025-11-28",
+            venue: "Library",
+            rsvp: true,
+            source: "Private",
+          },
+          {
+            id: "e9",
+            title: "Vocational Skills Demo (Carpentry)",
+            date: "2025-12-05",
+            venue: "Training Shed",
+            rsvp: true,
+            source: "Private",
+          },
+          {
+            id: "e10",
+            title: "Solar Lamp Distribution Drive",
+            date: "2025-12-15",
+            venue: "School Hall",
+            rsvp: true,
+            source: "Gov",
+          },
+        ];
+
+        var container = document.getElementById("eventsList");
+        events.forEach(function (ev, idx) {
+          var col = document.createElement("div");
+          col.className = "col-md-6";
+
+          var card = document.createElement("div");
+          card.className = "card scheme-card shadow-sm p-0";
+          // choose accent by source and index
+          var accent =
+            ev.source === "Gov"
+              ? ["#0b3d91", "#0a9bff"]
+              : ["#1e7f5a", "#46b987"];
+          card.style.setProperty("--accent-start", accent[0]);
+          card.style.setProperty("--accent-end", accent[1]);
+
+          var top = document.createElement("div");
+          top.className =
+            "scheme-top d-flex align-items-center justify-content-between px-3";
+          var left = document.createElement("div");
+          left.className = "d-flex align-items-center gap-2";
+          var icon = document.createElement("i");
+          // pick a thematic icon per event type/title
+          var icons = {
+            "Village Health & Vision Camp": "bi-heart-pulse",
+            "Storytelling & Reading Day": "bi-book",
+            "Digital Skills Workshop (Basic)": "bi-laptop",
+            "Career Guidance Fair": "bi-mortarboard-fill",
+            "Science Demonstration Day": "bi-beaker",
+            "Sports & Games Meet": "bi-trophy",
+            "Teacher-Parent Workshop": "bi-people-fill",
+            "Scholarship Awareness Session": "bi-cash-stack",
+            "Vocational Skills Demo (Carpentry)": "bi-hammer",
+            "Solar Lamp Distribution Drive": "bi-sun",
+          };
+          var iconClass = icons[ev.title] || "bi-calendar-event";
+          icon.className = "bi " + iconClass + " scheme-icon";
+          left.appendChild(icon);
+          var titleSmall = document.createElement("div");
+          titleSmall.className = "fw-bold";
+          titleSmall.style.color = "#fff";
+          titleSmall.textContent = ev.title;
+          left.appendChild(titleSmall);
+          top.appendChild(left);
+          var right = document.createElement("div");
+          right.className = "small text-white-50";
+          right.textContent = ev.date;
+          top.appendChild(right);
+          card.appendChild(top);
+
+          var body = document.createElement("div");
+          body.className = "card-body";
+          var h = document.createElement("h5");
+          h.className = "card-title mb-1";
+          h.textContent = ev.title;
+          var p = document.createElement("p");
+          p.className = "text-muted mb-2";
+          p.textContent =
+            "Venue: " + ev.venue + " • Organized by: " + ev.source;
+
+          var actions = document.createElement("div");
+          actions.className = "d-flex gap-2";
+
+          var rKey = "rsvp_" + ev.id;
+          var isRsvped = localStorage.getItem(rKey) === "1";
+          var btn = document.createElement("button");
+          btn.className = isRsvped ? "btn btn-success" : "btn btn-apply";
+          btn.textContent = isRsvped ? "RSVPed" : ev.rsvp ? "RSVP" : "Details";
+          btn.type = "button";
+          btn.addEventListener("click", function () {
+            showEventToast(ev.title + (ev.rsvp ? " • RSVP" : " • Details"));
+            if (ev.rsvp && !isRsvped) {
+              setTimeout(function () {
+                try {
+                  localStorage.setItem(rKey, "1");
+                } catch (e) {}
+                btn.textContent = "RSVPed";
+                btn.className = "btn btn-success";
+                isRsvped = true;
+              }, 800);
+            }
+          });
+
+          var more = document.createElement("button");
+          more.className = "btn btn-sm btn-light ms-auto";
+          more.textContent = "Info";
+          more.type = "button";
+          more.addEventListener("click", function () {
+            showEventToast(ev.title + " • Info");
+          });
+
+          actions.appendChild(btn);
+          actions.appendChild(more);
+
+          body.appendChild(h);
+          body.appendChild(p);
+          body.appendChild(actions);
+          card.appendChild(body);
+          col.appendChild(card);
+          container.appendChild(col);
+        });
+
+        var toast = document.getElementById("eventToast");
+        var toastText = document.getElementById("eventToastText");
+        var tHide = null;
+        function showEventToast(msg) {
+          if (tHide) {
+            clearTimeout(tHide);
+            tHide = null;
+          }
+          toastText.textContent = msg ? "Processing " + msg : "Processing...";
+          toast.hidden = false;
+          toast.classList.add("show");
+          tHide = setTimeout(function () {
+            toast.classList.remove("show");
+            setTimeout(function () {
+              toast.hidden = true;
+            }, 240);
+          }, 1200);
+        }
+      })();
+    </script>
+    <script>
+      // role-aware home link and small profile menu toggle
+      (function () {
+        try {
+          var role = localStorage.getItem("gv_userRole");
+          var home = document.getElementById("homeBtn");
+          if (home) {
+            if (role === "student") home.href = "student.html";
+            else if (role === "teacher") home.href = "teacher.html";
+            else home.href = "index.html";
+          }
+        } catch (e) {}
+
+        var profileBtn = document.getElementById("profileBtn");
+        var profileMenu = document.getElementById("profileMenu");
+        if (profileBtn && profileMenu) {
+          profileBtn.addEventListener("click", function (e) {
+            var shown = !profileMenu.hasAttribute("hidden");
+            if (shown) {
+              profileMenu.setAttribute("hidden", "");
+              profileBtn.setAttribute("aria-expanded", "false");
+            } else {
+              profileMenu.removeAttribute("hidden");
+              profileBtn.setAttribute("aria-expanded", "true");
+            }
+          });
+          // close on outside click
+          document.addEventListener("click", function (ev) {
+            if (
+              !profileBtn.contains(ev.target) &&
+              !profileMenu.contains(ev.target)
+            ) {
+              profileMenu.setAttribute("hidden", "");
+              profileBtn.setAttribute("aria-expanded", "false");
+            }
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Government Schemes - GramVidya</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark edu-navbar sticky-top">
+      <div class="container">
+        <a
+          class="navbar-brand d-flex align-items-center gap-2"
+          href="index.html"
+        >
+          <i class="bi bi-mortarboard-fill brand-icon" aria-hidden="true"></i>
+          <span class="fw-bold">GramVidya</span>
+        </a>
+        <div class="d-flex ms-lg-auto">
+          <a id="homeBtn" class="btn btn-light" href="index.html">Home</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container py-5">
+      <h1 class="h2 mb-2">Government Schemes for Students</h1>
+      <p class="text-muted">
+        Programs aimed at helping poor children access education and supplies.
+      </p>
+
+      <div id="schemesList" class="row g-3 mt-3"></div>
+    </main>
+
+    <!-- Small redirecting popup (aria-live for screen readers) -->
+    <div
+      id="redirectToast"
+      role="status"
+      aria-live="polite"
+      class="redirect-toast"
+      hidden
+    >
+      <div class="toast-content">
+        <div
+          class="spinner-border text-light spinner-sm"
+          role="status"
+          aria-hidden="true"
+          style="width: 1rem; height: 1rem"
+        ></div>
+        <div id="redirectText" class="ms-2">Redirecting...</div>
+      </div>
+    </div>
+
+    <script>
+      // Generate 10 fake schemes with dynamic accents
+      (function () {
+        var accents = [
+          ["#ff8a00", "#ffcd3c"],
+          ["#1e7f5a", "#46b987"],
+          ["#0b3d91", "#0a9bff"],
+          ["#8a2be2", "#c084fc"],
+          ["#e11d48", "#fb7185"],
+          ["#0ea5a4", "#34d399"],
+          ["#f97316", "#fb923c"],
+          ["#06b6d4", "#7dd3fc"],
+          ["#7c3aed", "#a78bfa"],
+          ["#0f766e", "#2dd4bf"],
+        ];
+
+        var schemes = [];
+        for (var i = 1; i <= 10; i++) {
+          schemes.push({
+            id: "s" + i,
+            title: [
+              "Free Textbooks Program",
+              "Midday Meal Scheme",
+              "Scholarship for Girls",
+              "Rural Digital Classrooms",
+              "School Uniform Support",
+              "Cycle for Students",
+              "Teacher Training Grant",
+              "Health & Vision Camp",
+              "Solar Study Lamps",
+              "Community Library Fund",
+            ][i - 1],
+            desc: [
+              "Free textbooks for primary students to improve access to learning.",
+              "Nutritious mid-day meals to boost attendance and health.",
+              "Monthly financial support for girls from low-income families.",
+              "Fund access for digital teaching tools in rural classrooms.",
+              "Assistance to provide school uniforms and essentials.",
+              "Subsidised bicycles for students traveling long distances.",
+              "Small grants for local teacher upskilling and workshops.",
+              "Periodic health checks and vision screening at schools.",
+              "Portable solar lamps so students can study after sunset.",
+              "Small grants to create and stock community learning libraries.",
+            ][i - 1],
+            apply: i % 2 === 1, // alternate apply/learn more
+            accent: accents[(i - 1) % accents.length],
+          });
+        }
+
+        var container = document.getElementById("schemesList");
+        schemes.forEach(function (s, idx) {
+          var col = document.createElement("div");
+          col.className = "col-md-6";
+
+          var card = document.createElement("div");
+          card.className = "card scheme-card shadow-sm p-0";
+          // attach CSS vars for dynamic accent
+          card.style.setProperty("--accent-start", s.accent[0]);
+          card.style.setProperty("--accent-end", s.accent[1]);
+
+          var top = document.createElement("div");
+          top.className =
+            "scheme-top d-flex align-items-center justify-content-between px-3";
+
+          // Icon and badge area
+          var leftGroup = document.createElement("div");
+          leftGroup.className = "d-flex align-items-center gap-2";
+          var icon = document.createElement("i");
+          // choose some thematic icons
+          var icons = [
+            "bi-book",
+            "bi-egg-fried",
+            "bi-gender-female",
+            "bi-laptop",
+            "bi-person-bounding-box",
+            "bi-bicycle",
+            "bi-people-fill",
+            "bi-heart-pulse",
+            "bi-sun",
+            "bi-journal-bookmark",
+          ];
+          icon.className = "bi " + icons[idx % icons.length] + " scheme-icon";
+          icon.setAttribute("aria-hidden", "true");
+          leftGroup.appendChild(icon);
+
+          var badge = document.createElement("span");
+          badge.className = "scheme-badge small";
+          // dynamic badge labels
+          var badges = ["New", "Popular", "Open"];
+          badge.textContent = badges[idx % badges.length];
+          leftGroup.appendChild(badge);
+
+          top.appendChild(leftGroup);
+
+          var rightGroup = document.createElement("div");
+          rightGroup.className = "text-end text-white-50 small";
+          rightGroup.textContent = "Scheme ID: " + s.id.toUpperCase();
+          top.appendChild(rightGroup);
+
+          card.appendChild(top);
+
+          var body = document.createElement("div");
+          body.className = "card-body";
+
+          var h = document.createElement("h5");
+          h.className = "card-title mb-1";
+          h.textContent = s.title;
+
+          var p = document.createElement("p");
+          p.className = "text-muted mb-2";
+          p.textContent = s.desc;
+
+          // beneficiaries and uptake progress
+          var meta = document.createElement("div");
+          meta.className =
+            "d-flex align-items-center gap-3 mb-2 small text-muted";
+          var beneficiaries = document.createElement("div");
+          beneficiaries.innerHTML =
+            "<strong>Beneficiaries:</strong> " +
+            Math.floor(50 + Math.random() * 950);
+          var uptakeWrap = document.createElement("div");
+          uptakeWrap.className = "uptake-wrap flex-grow-1";
+          var uptakeBar = document.createElement("div");
+          uptakeBar.className = "uptake-bar";
+          var uptakeInner = document.createElement("div");
+          var uptakeVal = Math.floor(10 + Math.random() * 90);
+          uptakeInner.className = "uptake-inner";
+          uptakeInner.style.width = uptakeVal + "%";
+          uptakeInner.textContent = uptakeVal + "%";
+          uptakeBar.appendChild(uptakeInner);
+          uptakeWrap.appendChild(uptakeBar);
+
+          meta.appendChild(beneficiaries);
+          meta.appendChild(uptakeWrap);
+
+          var actions = document.createElement("div");
+          actions.className = "d-flex gap-2 align-items-center";
+
+          var btn = document.createElement("button");
+          btn.className = s.apply ? "btn btn-apply" : "btn btn-outline-primary";
+          btn.textContent = s.apply ? "Apply" : "Learn More";
+          btn.setAttribute("type", "button");
+
+          // applied-state persistence
+          var appliedKey = "applied_" + s.id;
+          var isApplied = localStorage.getItem(appliedKey) === "1";
+          if (isApplied) {
+            btn.textContent = "Applied";
+            btn.disabled = true;
+            btn.classList.remove("btn-apply");
+            btn.classList.add("btn-success");
+          }
+
+          btn.addEventListener("click", function () {
+            if (isApplied) return;
+            // Show small redirecting popup with scheme name
+            showRedirecting(s.title);
+            // mark applied after a short delay
+            setTimeout(function () {
+              try {
+                localStorage.setItem(appliedKey, "1");
+              } catch (e) {}
+              btn.textContent = "Applied";
+              btn.disabled = true;
+              btn.classList.remove("btn-apply");
+              btn.classList.add("btn-success");
+              isApplied = true;
+            }, 900);
+          });
+
+          var info = document.createElement("button");
+          info.className = "btn btn-sm btn-light ms-auto";
+          info.textContent = "Details";
+          info.setAttribute("type", "button");
+
+          // Collapsible details area
+          var details = document.createElement("div");
+          details.className = "scheme-details mt-3 collapse";
+          details.innerHTML =
+            "<div class='small text-muted'>Full description: " +
+            s.desc +
+            "\n\nHow to apply: Visit your local education office or contact the school head. Required documents may include proof of income and student ID (simulated instructions).</div>";
+
+          info.setAttribute("aria-expanded", "false");
+          info.setAttribute("aria-controls", "details_" + s.id);
+          details.id = "details_" + s.id;
+          details.setAttribute("aria-hidden", "true");
+          info.addEventListener("click", function () {
+            var isShown = details.classList.contains("show");
+            if (isShown) {
+              details.classList.remove("show");
+              details.setAttribute("aria-hidden", "true");
+              info.setAttribute("aria-expanded", "false");
+            } else {
+              details.classList.add("show");
+              details.setAttribute("aria-hidden", "false");
+              info.setAttribute("aria-expanded", "true");
+            }
+          });
+
+          actions.appendChild(btn);
+          actions.appendChild(info);
+
+          body.appendChild(h);
+          body.appendChild(p);
+          body.appendChild(meta);
+          body.appendChild(actions);
+          body.appendChild(details);
+
+          card.appendChild(body);
+          col.appendChild(card);
+          container.appendChild(col);
+          // animate uptake inner width a tick after insertion
+          var inner = uptakeInner;
+          setTimeout(function () {
+            // trigger transition
+            inner.style.width = uptakeVal + "%";
+          }, 80 + idx * 40);
+        });
+
+        // Redirecting popup logic
+        var toast = document.getElementById("redirectToast");
+        var redirectText = document.getElementById("redirectText");
+        var hideTimer = null;
+
+        window.showRedirecting = function (msg) {
+          if (hideTimer) {
+            clearTimeout(hideTimer);
+            hideTimer = null;
+          }
+          redirectText.textContent =
+            "Redirecting " + (msg ? "to " + msg : "...");
+          toast.hidden = false;
+          toast.classList.add("show");
+
+          // Optionally simulate a redirect after a short pause (here we just hide the toast)
+          hideTimer = setTimeout(function () {
+            toast.classList.remove("show");
+            // small delay for animation then hide attribute
+            setTimeout(function () {
+              toast.hidden = true;
+            }, 260);
+          }, 1200);
+        };
+      })();
+    </script>
+    <script>
+      // Update Home button to return to role-specific dashboard when available
+      (function () {
+        try {
+          var role = localStorage.getItem("gv_userRole");
+          var home = document.getElementById("homeBtn");
+          if (!home) return;
+          if (role === "student") home.href = "student.html";
+          else if (role === "teacher") home.href = "teacher.html";
+          else home.href = "index.html";
+        } catch (e) {
+          // ignore
+        }
+      })();
+    </script>
+  </body>
+</html>
