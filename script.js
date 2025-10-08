@@ -102,11 +102,8 @@
         if (role === teacherId) {
           window.location.href = "teacher.html";
         } else {
-          // If student has already seen the welcome page, go directly to dashboard
-          try {
-            var seen = localStorage.getItem('gv_seen_welcome') === '1';
-          } catch (e) { var seen = false; }
-          window.location.href = seen ? 'student.html' : 'welcome.html';
+          // Always redirect students to welcome page first
+          window.location.href = 'welcome.html';
         }
       });
     }
