@@ -38,6 +38,15 @@
     },
   ];
 
+  // Merge teacher-posted resources (gv_resources)
+  try {
+    var teacherResources = JSON.parse(localStorage.getItem('gv_resources') || '[]');
+    if (Array.isArray(teacherResources) && teacherResources.length) {
+      // prepend teacher resources so they appear first
+      resources = teacherResources.concat(resources);
+    }
+  } catch (e) {}
+
   var grid = document.getElementById("resourceGrid");
   var search = document.getElementById("searchInput");
   var bookmarksEl = document.getElementById("bookmarks");

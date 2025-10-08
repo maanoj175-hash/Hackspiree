@@ -6,6 +6,34 @@
   var welcome = document.getElementById("welcome");
   if (welcome) welcome.textContent = "Welcome, " + name + " — keep going!";
 
+  // Initialize profile display (supports <img id="profileAvatar"> or <i id="profileAvatar"> icon)
+  (function () {
+    var profileName = document.getElementById("profileName");
+    var profileAvatar = document.getElementById("profileAvatar");
+    var avatarUrl = localStorage.getItem("gv_userAvatar") || "";
+    try {
+      if (profileName) profileName.textContent = name;
+      if (profileAvatar) {
+        var tag = profileAvatar.tagName && profileAvatar.tagName.toLowerCase();
+        if (tag === "img") {
+          profileAvatar.src = avatarUrl || profileAvatar.src || "assets/avatar.png";
+        } else {
+          if (avatarUrl) {
+            profileAvatar.style.backgroundImage = 'url("' + avatarUrl + '")';
+            profileAvatar.style.backgroundSize = "cover";
+            profileAvatar.style.backgroundPosition = "center";
+            profileAvatar.style.borderRadius = "50%";
+            profileAvatar.classList.remove("bi-person-circle");
+          } else {
+            profileAvatar.classList.add("bi-person-circle");
+          }
+        }
+      }
+    } catch (e) {
+      // ignore non-critical profile errors
+    }
+  })();
+
   // Fake dataset generator
   function generateFakeSubjects() {
     return [
@@ -391,4 +419,55 @@
       window.location.href = "index.html";
     });
   }
+
+  // Profile dropdown toggle and logout handling (for profile menu inside navbar)
+  (function () {
+    var profileBtn = document.getElementById("profileBtn");
+    var profileMenu = document.getElementById("profileMenu");
+    var logoutLink = document.getElementById("logoutLink");
+
+    function closeMenu() {
+      if (profileMenu && profileMenu.hasAttribute("hidden") === false) {
+        profileMenu.setAttribute("hidden", "");
+        if (profileBtn) profileBtn.setAttribute("aria-expanded", "false");
+      }
+    }
+
+    if (profileBtn && profileMenu) {
+      profileBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var shown = !profileMenu.hasAttribute("hidden");
+        if (shown) {
+          profileMenu.setAttribute("hidden", "");
+          profileBtn.setAttribute("aria-expanded", "false");
+        } else {
+          profileMenu.removeAttribute("hidden");
+          profileBtn.setAttribute("aria-expanded", "true");
+        }
+      });
+
+      // close when clicking outside
+      document.addEventListener("click", function (ev) {
+        if (!profileBtn.contains(ev.target) && !profileMenu.contains(ev.target)) {
+          closeMenu();
+        }
+      });
+    }
+
+    // Logout link inside menu
+    if (logoutLink) {
+      logoutLink.addEventListener("click", function (e) {
+        e.preventDefault();
+        try {
+          localStorage.removeItem("gv_userName");
+          localStorage.removeItem("gv_userEmail");
+          localStorage.removeItem("gv_userRole");
+          localStorage.removeItem("gv_bookmarks");
+        } catch (err) {}
+        // optionally close menu then redirect
+        closeMenu();
+        window.location.href = "index.html";
+      });
+    }
+  })();
 })();

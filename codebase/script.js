@@ -16,6 +16,8 @@
   });
 })();
 
+// ...existing code...
+
 // Footer year
 (function () {
   var yearEl = document.getElementById("year");
@@ -100,7 +102,11 @@
         if (role === teacherId) {
           window.location.href = "teacher.html";
         } else {
-          window.location.href = "student.html";
+          // If student has already seen the welcome page, go directly to dashboard
+          try {
+            var seen = localStorage.getItem('gv_seen_welcome') === '1';
+          } catch (e) { var seen = false; }
+          window.location.href = seen ? 'student.html' : 'welcome.html';
         }
       });
     }

@@ -56,6 +56,11 @@
               >
             </li>
             <li class="nav-item">
+              <a class="nav-link nav-unique-quiz" href="quiz.html"
+                ><i class="bi bi-question-circle me-1"></i>Quizzes</a
+              >
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="events.html"
                 ><i class="bi bi-calendar-event me-1"></i>Events</a
               >
@@ -82,17 +87,9 @@
                 class="btn btn-sm btn-light d-flex align-items-center gap-2"
                 aria-expanded="false"
               >
-                <img
-                  id="profileAvatar"
-                  src="assets/avatar.png"
-                  alt="Profile"
-                  class="profile-avatar"
-                  width="32"
-                  height="32"
-                />
-                <span id="profileName" class="d-none d-sm-inline fw-semibold"
-                  >My Profile</span
-                >
+                <!-- Use an inline Bootstrap person-circle icon for the profile avatar to avoid missing image files -->
+                <i id="profileAvatar" class="bi bi-person-circle profile-avatar" aria-hidden="true" style="font-size:32px;line-height:1"></i>
+                <span id="profileName" class="d-none d-sm-inline fw-semibold">My Profile</span>
                 <i class="bi bi-caret-down-fill ms-1"></i>
               </button>
               <div
@@ -200,54 +197,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="student.js"></script>
-    <script>
-      // populate profile name and avatar from localStorage and wire menu
-      (function () {
-        var name = localStorage.getItem("gv_userName") || "Student";
-        var avatar =
-          localStorage.getItem("gv_userAvatar") || "assets/avatar.png";
-        var profileName = document.getElementById("profileName");
-        var profileAvatar = document.getElementById("profileAvatar");
-        if (profileName) profileName.textContent = name;
-        if (profileAvatar) profileAvatar.src = avatar;
-
-        var profileBtn = document.getElementById("profileBtn");
-        var profileMenu = document.getElementById("profileMenu");
-        if (profileBtn && profileMenu) {
-          profileBtn.addEventListener("click", function (e) {
-            var shown = !profileMenu.hasAttribute("hidden");
-            if (shown) {
-              profileMenu.setAttribute("hidden", "");
-              profileBtn.setAttribute("aria-expanded", "false");
-            } else {
-              profileMenu.removeAttribute("hidden");
-              profileBtn.setAttribute("aria-expanded", "true");
-            }
-          });
-          document.addEventListener("click", function (ev) {
-            if (
-              !profileBtn.contains(ev.target) &&
-              !profileMenu.contains(ev.target)
-            ) {
-              profileMenu.setAttribute("hidden", "");
-              profileBtn.setAttribute("aria-expanded", "false");
-            }
-          });
-        }
-
-        var logoutLink = document.getElementById("logoutLink");
-        var logoutBtn = document.getElementById("logoutBtn");
-        function doLogout() {
-          try {
-            localStorage.removeItem("gv_userName");
-            localStorage.removeItem("gv_userRole");
-          } catch (e) {}
-          window.location = "index.html";
-        }
-        if (logoutLink) logoutLink.addEventListener("click", doLogout);
-        if (logoutBtn) logoutBtn.addEventListener("click", doLogout);
-      })();
-    </script>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("/sw.js").catch(function (e) {
